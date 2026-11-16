@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Davi Schulz | Engenharia de Software</title>
+<meta name="description" content="Portfólio de Davi Schulz, estudante de Engenharia de Software na UTFPR. Desenvolvimento, SQL, APIs REST e cibersegurança.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060A13; --surface:#0D1524; --line:#1B2943; --text:#E6EDF7; --muted:#90A1BD;
+  --neon:#38A8FF; --neon-ink:#04101F; --glow:rgba(56,168,255,.35);
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--neon);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+
+/* Header */
+header{position:fixed;inset:0 0 auto;z-index:20;background:rgba(6,10,19,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font:700 1.1rem var(--display);text-decoration:none;letter-spacing:-.01em}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{text-decoration:none;color:var(--muted);transition:color .2s}
+nav a:hover{color:var(--neon)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:.45rem .8rem;border-radius:8px;font:inherit;cursor:pointer}
+
+/* Hero */
+.hero{--mx:72%;--my:38%;position:relative;min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;inset:0;pointer-events:none}
+.hero::before{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.35}
+.hero::after{background-image:linear-gradient(var(--neon) 1px,transparent 1px),linear-gradient(90deg,var(--neon) 1px,transparent 1px);background-size:56px 56px;opacity:.55;-webkit-mask-image:radial-gradient(circle 240px at var(--mx) var(--my),#000,transparent);mask-image:radial-gradient(circle 240px at var(--mx) var(--my),#000,transparent)}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{font:800 clamp(3.2rem,11vw,8rem)/.95 var(--display);letter-spacing:-.04em;text-shadow:0 0 60px var(--glow)}
+.hero .role{margin-top:1.4rem;font:500 clamp(1.15rem,2.4vw,1.6rem) var(--display);color:var(--neon)}
+.hero .pitch{margin-top:1rem;max-width:34rem;color:var(--muted);font-size:1.2rem}
+.actions{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.9rem}
+.btn{display:inline-block;padding:.85rem 1.6rem;border-radius:999px;font:600 1rem var(--body);text-decoration:none;border:1px solid var(--neon);cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-solid{background:var(--neon);color:var(--neon-ink)}
+.btn-solid:hover{box-shadow:0 0 28px var(--glow);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--neon)}
+.btn-ghost:hover{background:rgba(56,168,255,.1)}
+
+/* Sections */
+.section{padding:96px 0}
+.section h2{font:700 clamp(2rem,5vw,3rem)/1.1 var(--display);letter-spacing:-.025em;margin-bottom:2.2rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.about p+p{margin-top:1rem}
+.about p{color:var(--muted)}
+.about p:first-child{color:var(--text);font-size:1.2rem}
+.skills{list-style:none;display:grid;gap:.9rem}
+.skills li{display:flex;gap:1rem;align-items:baseline;padding:.95rem 1.1rem;border:1px solid var(--line);border-left:3px solid var(--neon);border-radius:4px 12px 12px 4px;background:var(--surface)}
+.skills strong{font:600 1.05rem var(--display);min-width:9.5rem}
+.skills span{color:var(--muted);font-size:.98rem}
+
+/* Projects */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--neon);transform:translateY(-4px)}
+.thumb{aspect-ratio:16/9;display:grid;place-items:center;font:800 2.6rem var(--display);letter-spacing:-.03em;color:rgba(230,237,247,.9)}
+.t1{background:radial-gradient(circle at 20% 20%,#1f6fd1,transparent 60%),linear-gradient(135deg,#0b2a55,#071122)}
+.t2{background:radial-gradient(circle at 80% 30%,#17a2b8,transparent 55%),linear-gradient(135deg,#0a2f3d,#071122)}
+.t3{background:repeating-linear-gradient(45deg,#0d1b33 0 14px,#0a1528 14px 28px)}
+.card-body{display:flex;flex-direction:column;gap:.7rem;padding:1.3rem 1.4rem 1.5rem;flex:1}
+.card h3{font:700 1.3rem var(--display);letter-spacing:-.01em}
+.card p{color:var(--muted);font-size:1rem;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tags span{font-size:.82rem;padding:.15rem .6rem;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.card .btn{align-self:flex-start;padding:.55rem 1.2rem;font-size:.95rem;margin-top:.4rem}
+@media(min-width:900px){.card.feature{grid-column:span 2}.card.feature .thumb{aspect-ratio:21/9}}
+
+dialog{margin:auto;width:min(480px,calc(100% - 2rem));background:var(--surface);color:var(--text);border:1px solid var(--neon);border-radius:16px;padding:1.8rem;box-shadow:0 0 60px var(--glow)}
+dialog::backdrop{background:rgba(3,6,12,.75)}
+dialog h3{font:700 1.4rem var(--display);margin-bottom:.8rem}
+dialog p{color:var(--muted);margin-bottom:1.4rem}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1.15fr;gap:3.5rem}
+.links{list-style:none;display:grid;gap:.8rem;margin-top:1.4rem}
+.links a{display:block;padding:.9rem 1.1rem;border:1px solid var(--line);border-radius:12px;text-decoration:none;background:var(--surface);transition:border-color .2s}
+.links a:hover{border-color:var(--neon)}
+.links small{display:block;color:var(--muted);font-size:.9rem}
+form{display:grid;gap:1rem}
+label{display:grid;gap:.35rem;font-weight:600;font-size:.95rem}
+input,textarea{font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.8rem .95rem}
+input:focus,textarea:focus{outline:none;border-color:var(--neon);box-shadow:0 0 0 3px var(--glow)}
+textarea{min-height:140px;resize:vertical}
+#status{min-height:1.4rem;color:var(--neon);font-size:.95rem}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.95rem}
+
+/* Motion: one hero entrance + gentle scroll reveal */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:no-preference){
+  .hero h1,.hero .role,.hero .pitch,.hero .actions{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  .hero .role{animation-delay:.12s}.hero .pitch{animation-delay:.22s}.hero .actions{animation-delay:.32s}
+}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none;transition:none}.card,.btn{transition:none}}
+
+@media(max-width:760px){
+  .menu-btn{display:block}
+  nav{position:absolute;inset:64px 0 auto;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:0;padding:.6rem 1.25rem 1rem}
+  nav a{display:block;padding:.7rem 0}
+  .about,.contact{grid-template-columns:1fr;gap:2.2rem}
+  .skills li{flex-direction:column;gap:.2rem}
+  .section{padding:72px 0}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#inicio">Davi Schulz</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav id="menu" aria-label="Principal">
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <h1>Davi Schulz</h1>
+      <p class="role">Estudante de Engenharia de Software</p>
+      <p class="pitch">Investigo o porquê dos problemas até encontrar a causa raiz e transformo isso em software que funciona.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="#projetos">Ver projetos</a>
+        <a class="btn btn-ghost" href="#contato">Falar comigo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sobre">
+    <div class="wrap about">
+      <div class="reveal">
+        <h2>Sobre mim</h2>
+        <p>Curso Engenharia de Software na UTFPR e moro em Cascavel, no Paraná. Em 2024 passei pela CISS: no treinamento, desenvolvi um mini ERP completo em PowerBuilder e SQL, com login, estoque, vendas, entregas e relatórios. No estágio, mantive módulos do sistema CISS Poder e diagnostiquei falhas em código legado.</p>
+        <p>Hoje foco em back-end com Java e Spring Boot, em Python e em IA generativa, e estudo cibersegurança por curiosidade. Tenho inglês fluente e gosto de explicar assuntos técnicos de forma clara.</p>
+      </div>
+      <ul class="skills reveal" aria-label="Principais habilidades">
+        <li><strong>Java e Spring Boot</strong><span>Back-end e APIs REST</span></li>
+        <li><strong>Python</strong><span>Scripts, automação e estudos de IA</span></li>
+        <li><strong>SQL</strong><span>SQL Server e MySQL, com Joins e Subqueries</span></li>
+        <li><strong>Git e Postman</strong><span>Versionamento e testes de endpoints</span></li>
+        <li><strong>IA generativa</strong><span>Claude, ChatGPT, Gemini e Cursor</span></li>
+        <li><strong>Cibersegurança</strong><span>Noções de pentest, Nmap e Burp Suite</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="projetos">
+    <div class="wrap">
+      <h2 class="reveal">Projetos</h2>
+      <!-- Troque os blocos .thumb por <img src="sua-imagem.jpg" alt="..."> e edite os textos quando tiver projetos publicados. -->
+      <div class="grid reveal">
+        <article class="card feature">
+          <div class="thumb t1" aria-hidden="true">Mini ERP</div>
+          <div class="card-body">
+            <h3>Mini ERP</h3>
+            <p>Sistema de gestão que desenvolvi em PowerBuilder durante o treinamento na CISS, em 2024. Tem login, cadastros, estoque, vendas, logística de entregas e relatórios, todos ligados ao banco de dados SQL.</p>
+            <div class="tags"><span>PowerBuilder</span><span>SQL</span><span>ERP</span><span>UI/UX padronizada</span></div>
+            <button class="btn btn-ghost" data-title="Mini ERP" data-text="Durante meu treinamento na CISS, desenvolvi um mini ERP em PowerBuilder com os módulos de login, cadastro de produtos, fornecedores e transportadores, estoque, vendas, logística de entregas e relatórios. Todos os itens estão ligados ao banco de dados SQL, e a interface segue o padrão visual interno da empresa.">Ver detalhes</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb t2" aria-hidden="true">UI</div>
+          <div class="card-body">
+            <h3>Protótipos de interface</h3>
+            <p>Wireframes e protótipos criados em projetos acadêmicos, com fluxos de usuário mapeados no Miro.</p>
+            <div class="tags"><span>Figma</span><span>Miro</span><span>UX</span></div>
+            <button class="btn btn-ghost" data-title="Protótipos de interface" data-text="Projetos da faculdade em que desenhei telas e protótipos no Figma e organizei ideias e fluxos de navegação no Miro.">Ver detalhes</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb t3" aria-hidden="true">IA</div>
+          <div class="card-body">
+            <h3>Chatbot com LLM em Python</h3>
+            <p>Projeto pessoal em planejamento para praticar integração de APIs de modelos de linguagem.</p>
+            <div class="tags"><span>Python</span><span>APIs REST</span><span>IA generativa</span></div>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/davi-schulz" target="_blank" rel="noopener">Acompanhar no LinkedIn</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contato">
+    <div class="wrap contact">
+      <div class="reveal">
+        <h2>Contato</h2>
+        <p style="color:var(--muted)">Procuro oportunidades de estágio em desenvolvimento, IA e segurança da informação. Me escreva por aqui ou por uma destas redes.</p>
+        <!-- Para adicionar GitHub, Behance ou Instagram, copie um <li> abaixo e troque o link. -->
+        <ul class="links">
+          <li><a href="https://www.linkedin.com/in/davi-schulz" target="_blank" rel="noopener">LinkedIn<small>linkedin.com/in/davi-schulz</small></a></li>
+          <li><a href="mailto:davischulz321@gmail.com">E-mail<small>davischulz321@gmail.com</small></a></li>
+          <li><a href="https://wa.me/5545988248647" target="_blank" rel="noopener">WhatsApp<small>(45) 98824-8647</small></a></li>
+        </ul>
+      </div>
+      <form class="reveal" id="form" novalidate>
+        <label>Nome<input name="nome" type="text" autocomplete="name" required></label>
+        <label>E-mail<input name="email" type="email" autocomplete="email" required></label>
+        <label>Mensagem<textarea name="msg" required></textarea></label>
+        <button class="btn btn-solid" type="submit">Enviar mensagem</button>
+        <p id="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="ano">2026</span> Davi Schulz. Cascavel, PR.</div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <h3 id="dlg-title"></h3>
+  <p id="dlg-text"></p>
+  <button class="btn btn-solid" id="dlg-close">Fechar</button>
+</dialog>
+
+<script>
+document.documentElement.classList.add("js");
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+// Menu mobile
+const btn = document.querySelector(".menu-btn"), menu = document.getElementById("menu");
+btn.addEventListener("click", () => {
+  const open = menu.classList.toggle("open");
+  btn.setAttribute("aria-expanded", open);
+});
+menu.addEventListener("click", e => { if (e.target.tagName === "A") { menu.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); } });
+
+// Lanterna do hero: a grade acende perto do cursor
+const hero = document.querySelector(".hero");
+hero.addEventListener("pointermove", e => {
+  const r = hero.getBoundingClientRect();
+  hero.style.setProperty("--mx", (e.clientX - r.left) + "px");
+  hero.style.setProperty("--my", (e.clientY - r.top) + "px");
+});
+
+// Aparecer ao rolar
+const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+// Detalhes dos projetos
+const dlg = document.getElementById("dlg");
+document.querySelectorAll("[data-title]").forEach(b => b.addEventListener("click", () => {
+  document.getElementById("dlg-title").textContent = b.dataset.title;
+  document.getElementById("dlg-text").textContent = b.dataset.text;
+  dlg.showModal();
+}));
+document.getElementById("dlg-close").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+// Formulário: abre o app de e-mail com a mensagem pronta (sem servidor)
+const form = document.getElementById("form"), status = document.getElementById("status");
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  if (!form.checkValidity()) { status.textContent = "Preencha nome, e-mail e mensagem para enviar."; return; }
+  const d = new FormData(form);
+  const body = d.get("msg") + "\n\n" + d.get("nome") + " (" + d.get("email") + ")";
+  location.href = "mailto:davischulz321@gmail.com?subject=" + encodeURIComponent("Contato pelo portfólio: " + d.get("nome")) + "&body=" + encodeURIComponent(body);
+  status.textContent = "Abrindo seu aplicativo de e-mail com a mensagem pronta.";
+});
+</script>
+</body>
+</html>
